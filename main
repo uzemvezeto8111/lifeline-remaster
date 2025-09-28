@@ -44,8 +44,9 @@ local UserInterface = Rayfield:CreateWindow({
    }
 })
 
---General Tab
+-- General tab
 local GeneralTab = UserInterface:CreateTab("General", "cog") -- Title, Image
+
 
 -- Team swapper
 local TeamSwapperSection = GeneralTab:CreateSection("Team Swapper")
@@ -145,6 +146,98 @@ local swapCriminals = GeneralTab:CreateButton({
 
 
 
+    
+    -- Teleport tab
+    local TeleportTab = UserInterface:CreateTab("Teleport", "circle")
+
+    
+    local player = game.Players.LocalPlayer
+    local character = player.Character or player.CharacterAdded:Wait()
+
+    local TeleportCriminalBase = TeleportTab:CreateButton({
+        Name = "Teleport Criminal Base #1",
+        Callback = function()
+            
+            local player = game.Players.LocalPlayer
+            local character = player.Character or player.CharacterAdded:Wait()
+            
+
+            local targetCFrame = CFrame.new(-975, 109, 2061)  
+
+            character:SetPrimaryPartCFrame(targetCFrame)
+        end,
+     })
+
+     local TeleportToCriminalBase2 = TeleportTab:CreateButton({
+        Name = "Teleport Criminal Base #2",
+        Callback = function()
+            
+            local player = game.Players.LocalPlayer
+            local character = player.Character or player.CharacterAdded:Wait()
+            
+
+            local targetCFrame = CFrame.new(-920, 95, 2138)  
+
+            character:SetPrimaryPartCFrame(targetCFrame)
+        end,
+     })
+
+     local TeleportToPrisonGate = TeleportTab:CreateButton({
+        Name = "Teleport Prison Main Gate",
+        Callback = function()
+            
+            local player = game.Players.LocalPlayer
+            local character = player.Character or player.CharacterAdded:Wait()
+            
+
+            local targetCFrame = CFrame.new(470, 98, 2216)  
+
+            character:SetPrimaryPartCFrame(targetCFrame)
+        end,
+     })
+
+     local TeleportToPrisonGarage = TeleportTab:CreateButton({
+        Name = "Teleport Prison Garage",
+        Callback = function()
+            
+            local player = game.Players.LocalPlayer
+            local character = player.Character or player.CharacterAdded:Wait()
+            
+
+            local targetCFrame = CFrame.new(611, 98, 2467)  
+
+            character:SetPrimaryPartCFrame(targetCFrame)
+        end,
+     })
+
+     
+     local TeleportToPrisonYard = TeleportTab:CreateButton({
+        Name = "Teleport Prison Yard",
+        Callback = function()
+            
+            local player = game.Players.LocalPlayer
+            local character = player.Character or player.CharacterAdded:Wait()
+            
+
+            local targetCFrame = CFrame.new(836, 98, 2515)  
+
+            character:SetPrimaryPartCFrame(targetCFrame)
+        end,
+     })
+
+     local TeleportToPrisonEntrance = TeleportTab:CreateButton({
+        Name = "Teleport Prison Main Entrance",
+        Callback = function()
+            
+            local player = game.Players.LocalPlayer
+            local character = player.Character or player.CharacterAdded:Wait()
+            
+
+            local targetCFrame = CFrame.new(651, 99, 2272)  
+
+            character:SetPrimaryPartCFrame(targetCFrame)
+        end,
+     })
 
 
 
