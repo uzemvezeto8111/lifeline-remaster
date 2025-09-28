@@ -149,7 +149,7 @@ local swapCriminals = GeneralTab:CreateButton({
     
     -- Teleport tab
     local TeleportTab = UserInterface:CreateTab("Teleport", "circle")
-
+    local TeleportSection = TeleportTab:CreateSection("Teleport")
     
     local player = game.Players.LocalPlayer
     local character = player.Character or player.CharacterAdded:Wait()
@@ -240,7 +240,126 @@ local swapCriminals = GeneralTab:CreateButton({
      })
 
 
+    -- Misc Tab
+    local MiscTab = UserInterface:CreateTab("Misc", "group") -- Title, Image
 
+    local DeleteAllDoors = MiscTab:CreateButton({
+        Name = "Delete All Doors (Local, Only Prison)",
+        Callback = function()
+            local workspace = game:GetService("Workspace")
+            local doors = workspace:FindFirstChild("Doors")
+
+            if doors then
+                for _, child in pairs(doors:GetChildren()) do
+                    if child:IsA("BasePart") or child:IsA("Model") then
+                        child:Destroy()
+                    end
+                end
+            end
+        end,
+    })
+
+
+    local DeleteAllFences = MiscTab:CreateButton({
+        Name = "Delete All Fences (Local, Only Prison)",
+        Callback = function()
+            local workspace = game:GetService("Workspace")
+            local fences = workspace:FindFirstChild("Prison_Fences")
+
+            if fences then
+                for _, part in pairs(fences:GetChildren()) do
+                    if part:IsA("BasePart") or part:IsA("Model") then
+                        part:Destroy()
+                    end
+                end
+            end
+        end,
+    })
+
+
+    local DeletePrisonWalls = MiscTab:CreateButton({
+        Name = "Delete Outer Prison Wall (Local)",
+        Callback = function()
+            local workspace = game:GetService("Workspace")
+            local outerwall = workspace:FindFirstChild("Prison_OuterWall")
+
+            if outerwall then
+                outerwall:Destroy()
+            end
+        end,
+    })
+
+    local SelfTab = UserInterface:CreateTab("Self", "rabbit")
+
+    local function UpdateCharacter()
+        local character = game.Players.LocalPlayer.Character
+        local humanoid = character and character:FindFirstChildOfClass("Humanoid")
+    
+        return character, humanoid
+    end
+    
+
+    local WalkSpeedSlider = SelfTab:CreateSlider({
+        Name = "Walk Speed",
+        Range = {0, 999},
+        Increment = 10,
+        Suffix = "Speed",
+        CurrentValue = 16,
+        Flag = "WalkSpeedChanger", 
+        Callback = function(Value)
+            local character, humanoid = UpdateCharacter()
+            if humanoid then
+                humanoid.WalkSpeed = Value
+            end
+        end,
+    })
+    
+
+    local JumpPowerSlider = SelfTab:CreateSlider({
+        Name = "Jump Power",
+        Range = {0, 999},
+        Increment = 10,
+        Suffix = "Power",
+        CurrentValue = 50,
+        Flag = "JumpPowerChanger", 
+        Callback = function(Value)
+            local character, humanoid = UpdateCharacter()
+            if humanoid then
+                humanoid.JumpPower = Value
+            end
+        end,
+    })
+    
+
+    game.Players.LocalPlayer.CharacterAdded:Connect(function()
+
+        local character, humanoid = UpdateCharacter()
+
+        if humanoid then
+            humanoid.WalkSpeed = WalkSpeedSlider.CurrentValue
+            humanoid.JumpPower = JumpPowerSlider.CurrentValue
+        end
+    end)
+
+
+    
+
+    local ResetAll = SelfTab:CreateButton({
+        Name = "Reset Values",
+        Callback = function()
+
+            local character, humanoid = UpdateCharacter()
+            if humanoid then
+                humanoid.WalkSpeed = 16
+                humanoid.JumpPower = 50  
+            end
+    
+            WalkSpeedSlider:Set(16)
+            JumpPowerSlider:Set(50)
+        end,
+    })
+
+    
 
 
 
