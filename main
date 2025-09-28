@@ -61,7 +61,7 @@ function swapGuards()
     if Player.Team == guardsTeam then
         Rayfield:Notify({
         Title = "ERROR",
-        Content = "You are already in the" + "Guards" + "team",
+        Content = "You are already in the GUARDS team",
         Duration = 3.5,
         Image = "minus",
         })
@@ -75,7 +75,7 @@ function swapInmates()
     if Player.Team == inmatesTeam then
         Rayfield:Notify({
         Title = "ERROR",
-        Content = "You are already in the" + "Inmates" + "team",
+        Content = "You are already in the INMATES team",
         Duration = 3.5,
         Image = "minus",
         })
@@ -89,7 +89,7 @@ function swapNeutral()
     if Player.Team == neutralTeam then
         Rayfield:Notify({
         Title = "ERROR",
-        Content = "You are already in the" + "Neutral" + "team",
+        Content = "You are already in the NEUTRAL team",
         Duration = 3.5,
         Image = "minus",
         })
@@ -101,9 +101,10 @@ end
 
 function swapCriminals()
     if Player.Team == criminalsTeam then
+        
         Rayfield:Notify({
         Title = "ERROR",
-        Content = "You are already in the" + "Criminals" + "team",
+        Content = "You are already in the CRIMINALS team",
         Duration = 3.5,
         Image = "minus",
         })
@@ -114,28 +115,28 @@ function swapCriminals()
 end
 
 local swapGuardBtn = GeneralTab:CreateButton({
-   Name = "Button Example",
+   Name = "Swap to Guard",
    Callback = function()
    swapGuards()
    end,
 })
 
 local swapInmates = GeneralTab:CreateButton({
-   Name = "Button Example",
+   Name = "Swap to Inmates",
    Callback = function()
    swapInmates()
    end,
 })
 
 local swapNeutral = GeneralTab:CreateButton({
-   Name = "Button Example",
+   Name = "Swap to Neutral",
    Callback = function()
    swapNeutral()
    end,
 })
 
 local swapCriminals = GeneralTab:CreateButton({
-   Name = "Button Example",
+   Name = "Swap to Criminals",
    Callback = function()
    swapCriminals()
    end,
@@ -172,8 +173,14 @@ local swapCriminals = GeneralTab:CreateButton({
 
 
 
-
-
+--Close the script
+local CloseScript = GeneralTab:CreateSection("Close")
+local close = GeneralTab:CreateButton({
+   Name = "Close",
+   Callback = function()
+   Rayfield:Destroy()
+   end,
+})
 
 
 
